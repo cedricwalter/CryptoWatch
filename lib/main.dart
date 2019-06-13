@@ -38,10 +38,12 @@ class TokenListWidget extends StatelessWidget {
     return new Scaffold(
       body: _buildBody(),
       backgroundColor: Colors.blue,
-      floatingActionButton: new FloatingActionButton(onPressed: () async {
-        // TODO implement refresh
-      },
-        child: new Icon(Icons.refresh), backgroundColor: Colors.lightBlue,
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () async {
+          // TODO implement refresh
+        },
+        child: new Icon(Icons.refresh),
+        backgroundColor: Colors.lightBlue,
       ),
     );
   }
@@ -65,14 +67,14 @@ class TokenListWidget extends StatelessWidget {
 
   Widget _getListViewWidget() {
     return new Flexible(
-        child: new ListView.builder(
-            itemCount: _prices.length,
-            itemBuilder: (context, index) {
-              final Map price = _prices[index];
-              final MaterialColor color = _colors[_random.nextInt(
-                  _colors.length)];
-              return _getListItemWidget(price, color);
-            }),
+      child: new ListView.builder(
+          itemCount: _prices.length,
+          itemBuilder: (context, index) {
+            final Map price = _prices[index];
+            final MaterialColor color =
+                _colors[_random.nextInt(_colors.length)];
+            return _getListItemWidget(price, color);
+          }),
     );
   }
 
@@ -80,7 +82,8 @@ class TokenListWidget extends StatelessWidget {
     return new CircleAvatar(
       backgroundColor: color,
       child: new Text(currencyName[0],
-      style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          style:
+              new TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -92,7 +95,10 @@ class TokenListWidget extends StatelessWidget {
   }
 
   RichText _getSubtitleText(String priceUsd, String percentChange1h) {
-    TextSpan priceTextWidget = new TextSpan(text: "\$$priceUsd\n", style: new TextStyle(color: Colors.black),);
+    TextSpan priceTextWidget = new TextSpan(
+      text: "\$$priceUsd\n",
+      style: new TextStyle(color: Colors.black),
+    );
     String percentChangeText = "1 hours: $percentChange1h%";
     TextSpan percentChangeWidget;
     Color itsColor;
@@ -101,28 +107,26 @@ class TokenListWidget extends StatelessWidget {
     } else {
       itsColor = Colors.red;
     }
-    percentChangeWidget = new TextSpan(text: percentChangeText, style: new TextStyle(color: itsColor),);
+    percentChangeWidget = new TextSpan(
+      text: percentChangeText,
+      style: new TextStyle(color: itsColor),
+    );
 
-
-    return new RichText(text: new TextSpan(
-      children: [
-        priceTextWidget,
-        percentChangeWidget
-      ]
-    ));
+    return new RichText(
+        text: new TextSpan(children: [priceTextWidget, percentChangeWidget]));
   }
 
   ListTile _getListTile(Map currency, MaterialColor color) {
     return new ListTile(
       leading: _getLeadingWidget(currency['name'], color),
       title: _getTitleWidget(currency['name']),
-      subtitle: _getSubtitleText(currency['price_usd'], currency['percent_change_1h']),
+      subtitle: _getSubtitleText(
+          currency['price_usd'], currency['percent_change_1h']),
       isThreeLine: true,
     );
   }
 
   Container _getListItemWidget(Map currency, MaterialColor color) {
-
     return new Container(
       margin: const EdgeInsets.only(top: 5.0),
       child: new Card(
@@ -130,12 +134,4 @@ class TokenListWidget extends StatelessWidget {
       ),
     );
   }
-
-
-
-
-
-
-
-
 }

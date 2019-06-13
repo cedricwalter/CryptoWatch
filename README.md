@@ -2,6 +2,8 @@
 
 A new Flutter application using coinmarketcap.com api to display the top 50 cryptocurrencies coins price in $
 
+![cryptowatch app on iOS](app.png)
+
 ## Ressources
 
 A few resources to get you started if this is your first Flutter project:
